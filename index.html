@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+
+
+<html lang="en-us">
+
+
+<head>
+
+<body>
+
+    <div id="game">
+        <h2>The Psychic-Game</h2>
+
+        <p>Guess what letter I'm thinking of</p>
+        <p>Wins - </p>
+        <p>Losses - </p>
+        <p> Your guesses Left - </p>
+        <p> Your Guesses - </p>
+    </div>
+
+
+
+
+
+    <script>
+
+        // <!-- letter options for game -->
+
+        // scoreboard 
+        var wins = 0;
+        var losses = 0;
+        var yourGuessLeft = 9;
+        var guesses = [];
+        var lettersGuessed = [];
+
+
+
+
+        // computer determines answer 
+        document.onkeyup = function (event) {
+
+            var UserGuess = event.key;
+            var answer = letterOptions[math.floor(math.random() * letterOptions.length)];
+
+            var letterOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+            lettersGuessed.push(answers);
+            console.log(lettersGuessed[0]);
+
+
+        }
+
+
+        // if answer is correct 
+        if (guesses === answer) {
+            wins++;
+            yourGuessLeft = 9;
+
+        }
+        // if answer is wrong 
+        if (guesses != answer) {
+            yourGuessLeft--;
+        }
+
+        if (yourGuessLeft === 0) {
+            losses++;
+            yourGuessLeft = 9;
+        }
+
+
+
+
+
+        // psychic game 
+        var html =
+            "<h1> The Psychic Game </h1>" +
+            "<p>Guess what letter I'm thinking of!</p>" +
+            "<p>Wins: " + wins + "</p>" +
+            "<p>Losses: " + losses + "</p>" +
+            "<p>Guesses Left: " + yourGuessLeft + "</p>" +
+            "<p>Your Guesses so far: " + computerGuess.join(", ") + "</p>";
+
+        document.querySelector("#game").innerHTML = html;
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+</body>
+</head>
+
+</html> -
