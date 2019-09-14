@@ -11,14 +11,12 @@
 
     <div id="game">
         <h2>The Psychic-Game</h2>
-
         <p>Guess what letter I'm thinking of</p>
-        <p>Wins - </p>
-        <p>Losses - </p>
-        <p> Your guesses Left - </p>
-        <p> Your Guesses - </p>
+        <p><span id='wins'> </span></p>
+        <p><span id='loses'> </span></p>
+        <p><span id='yourGuessLeft'> </span> </p>
+        <p> <span id='lettersGuessed'> </span> </p>
     </div>
-
 
 
 
@@ -30,62 +28,67 @@
         // scoreboard 
         var wins = 0;
         var losses = 0;
-        var yourGuessLeft = 9;
-        var guesses = [];
+        var yourGuessLeft;
         var lettersGuessed = [];
+        var answer;
+
+        var letterOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 
 
 
-        // computer determines answer 
+
+        // logic to occur when user presses key
         document.onkeyup = function (event) {
 
-            var UserGuess = event.key;
-            var answer = letterOptions[math.floor(math.random() * letterOptions.length)];
+            var userGuess = event.key;
 
-            var letterOptions = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+            // User wins logic
+            if (userGuess === answer) {
+                wins++;
+                alert("Good job, you guessed correctly");
+                resetGame();
+                return;
 
-            lettersGuessed.push(answers);
-            console.log(lettersGuessed[0]);
 
+            }
+
+
+            // Wrong guess logic
+
+            else if (userGuess !== answer) {
+                yourGuessLeft--;
+                lettersGuessed.push(userGuess);
+            }
+
+            if (yourGuessLeft === 0) {
+                alert("You lose!")
+                losses++;
+                resetGame();
+            }
 
         }
 
-
-        // if answer is correct 
-        if (guesses === answer) {
-            wins++;
+        document.getElementById("wins").innerHTML = "Winner!! : " + wins++;
+        
+        document.getElementById("loses").innerHTML = "Loser : " + losses;
+        
+        document.getElementById("yourGuessLeft").innerHTML = "Turns left : " + yourGuessLeft;
+        
+        document.getElementById("lettersGuessed").innerHTML = "Letters used already :" + lettersGuessed;
+        
+       
+        function resetGame() {
             yourGuessLeft = 9;
+            lettersGuessed = [];
+            answer = letterOptions[Math.floor(Math.random() * 26)];
+            console.log("the letter is " + answer)
+
 
         }
-        // if answer is wrong 
-        if (guesses != answer) {
-            yourGuessLeft--;
-        }
 
-        if (yourGuessLeft === 0) {
-            losses++;
-            yourGuessLeft = 9;
-        }
-
-
-
-
-
-        // psychic game 
-        var html =
-            "<h1> The Psychic Game </h1>" +
-            "<p>Guess what letter I'm thinking of!</p>" +
-            "<p>Wins: " + wins + "</p>" +
-            "<p>Losses: " + losses + "</p>" +
-            "<p>Guesses Left: " + yourGuessLeft + "</p>" +
-            "<p>Your Guesses so far: " + computerGuess.join(", ") + "</p>";
-
-        document.querySelector("#game").innerHTML = html;
-
-
-
-
+        resetGame();
+    
 
     </script>
 
