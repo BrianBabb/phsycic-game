@@ -3,19 +3,27 @@
 
 
 <html lang="en-us">
-
+<link rel="stylesheet" type="text/css" href="assest/css/style.css/">
 
 <head>
 
 <body>
+    <style>
+        body {
+            background-image: url("assest/images/psychic-t2.jpg");
+            background-image: fixed;
+            color: green;
+            text-align: center;
+        }
+    </style>
 
     <div id="game">
-        <h2>The Psychic-Game</h2>
-        <p>Guess what letter I'm thinking of</p>
-        <p><span id='wins'> </span></p>
-        <p><span id='loses'> </span></p>
-        <p><span id='yourGuessLeft'> </span> </p>
-        <p> <span id='lettersGuessed'> </span> </p>
+        <h1>The Psychic-Game</h1>
+        <h3>Guess what letter I'm thinking of</h3>
+        <h3><span id='wins'> </span></h3>
+        <h3><span id='loses'> </span></h3>
+        <h3><span id='yourGuessLeft'> </span> </h3>
+        <h3> <span id='lettersGuessed'> </span> </h3>
     </div>
 
 
@@ -70,14 +78,14 @@
         }
 
         document.getElementById("wins").innerHTML = "Winner!! : " + wins++;
-        
+
         document.getElementById("loses").innerHTML = "Loser : " + losses;
-        
+
         document.getElementById("yourGuessLeft").innerHTML = "Turns left : " + yourGuessLeft;
-        
+
         document.getElementById("lettersGuessed").innerHTML = "Letters used already :" + lettersGuessed;
-        
-       
+
+
         function resetGame() {
             yourGuessLeft = 9;
             lettersGuessed = [];
@@ -88,7 +96,7 @@
         }
 
         resetGame();
-    
+
 
     </script>
 
